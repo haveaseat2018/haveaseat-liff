@@ -10,6 +10,7 @@
   --bg:#F6F3EE; --card:#fff; --text:#333; --muted:#8C8C8C; --line:#E2DDD5; --beige:#DED5C7;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{margin:0;background:#101315;font-family:"Helvetica Neue",Arial,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;color:var(--text)}
 body{display:flex;justify-content:center;min-height:100vh}
 #app{width:min(100%,430px);min-height:100vh;background:var(--bg);position:relative;padding-bottom:76px}
@@ -27,12 +28,12 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
 .notice-card{background:#fff;border:1px solid var(--line);padding:20px;margin-bottom:18px}
 .notice-card b{font-size:22px;display:block;letter-spacing:.03em} .notice-card h3{font-size:20px;margin:4px 0 16px;font-weight:500}
 .notice-card button{width:100%;border:0;background:var(--beige);padding:12px;font-size:15px}
-.line-reward{background:#fff;border:1px solid var(--line);margin:0 0 26px;overflow:hidden}
-.line-reward-photo{aspect-ratio:1.75/1;background:#E7E3DC;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px;color:#6f6a63}
-.line-reward-photo b,.join-photo b{font-size:12px;letter-spacing:.14em;font-weight:600}.line-reward-photo span,.join-photo span{font-size:11px;line-height:1.65;margin-top:7px;color:#918a80;letter-spacing:.02em}
-.line-reward-copy{padding:20px}.line-reward-copy .en,.join-gift .en{font-size:10px;letter-spacing:.17em;color:var(--muted)}
-.line-reward-copy h3{font-size:24px;line-height:1.35;font-weight:500;margin:9px 0 8px}.line-reward-copy p{font-size:13px;line-height:1.7;color:#666;margin:0 0 17px}
-.line-btn{width:100%;border:0;background:#252525;color:#fff;padding:14px;font-size:14px}.line-btn.claimed{background:#DED5C7;color:#333}
+.visitor-hero,.line-reward{position:relative;min-height:365px;margin:0 0 28px;overflow:hidden;background:#8d8174;color:#fff}
+.visitor-hero:before,.line-reward:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,25,22,.72) 0%,rgba(28,25,22,.42) 54%,rgba(28,25,22,.08) 100%);z-index:1}
+.photo-brief{position:absolute;z-index:3;right:14px;top:14px;width:145px;padding:9px 10px;border:1px solid rgba(255,255,255,.55);background:rgba(40,35,31,.28);font-size:9px;line-height:1.5;letter-spacing:.06em;text-align:right;color:rgba(255,255,255,.88)}
+.hero-copy{position:relative;z-index:2;min-height:365px;padding:36px 28px 28px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end}
+.hero-copy .en{font-size:10px;letter-spacing:.2em;margin-bottom:13px;color:rgba(255,255,255,.82)}.hero-copy h1,.hero-copy h3{font-size:31px;line-height:1.35;font-weight:500;margin:0 0 12px;color:#fff}.hero-copy p{font-size:13px;line-height:1.7;color:rgba(255,255,255,.8);margin:0 0 20px;max-width:285px}
+.hero-cta,.line-btn{border:0;background:#F6F3EE;color:#302d29;padding:13px 18px;font-size:14px;min-width:185px;text-align:left}.line-btn.claimed{background:#DED5C7;color:#333}
 .feature{display:grid;grid-template-columns:55% 45%;background:#E7E9E8;min-height:165px;margin-bottom:24px;overflow:hidden}
 .feature img{width:100%;height:100%;object-fit:cover} .feature div{padding:22px 16px;display:flex;flex-direction:column;justify-content:center}
 .feature strong{font-size:17px;line-height:1.15;letter-spacing:.02em} .feature p{font-size:18px;line-height:1.45;margin:18px 0 0}
@@ -55,11 +56,10 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
 .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,430px);height:72px;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);z-index:30;padding-bottom:env(safe-area-inset-bottom)}
 .nav button{border:0;background:none;color:#999;font-size:10px;padding:8px 2px} .nav button.active{color:#222} .nav .ico{font-size:22px;display:block;line-height:1.1;margin-bottom:2px}
 .demo-note{font-size:10px;color:#aaa;text-align:center;margin:20px 0}
-.guest{position:fixed;inset:0;z-index:100;background:#F6F3EE;display:none;overflow:auto;padding:0 20px 32px}.guest.active{display:block}.guest-inner{width:min(100%,390px);margin:auto}
-.guest-top{height:70px;display:flex;align-items:center;border-bottom:1px solid var(--line);margin-bottom:28px}.guest-logo{font-size:22px;font-weight:600}.guest-logo small{font-size:18px;font-weight:500}
-.guest-mark{font-size:11px;letter-spacing:.18em;color:#8c8c8c;margin-bottom:12px}.guest h1{font-size:38px;line-height:1.22;margin:0 0 12px}.guest-intro{font-size:13px;line-height:1.75;color:#666;margin:0 0 20px}
-.join-photo{width:100%;aspect-ratio:1.55/1;background:#E7E3DC;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px;color:#6f6a63}
-.join-gift{background:#fff;border:1px solid var(--line);padding:18px 18px 16px;margin:0 0 18px}.join-gift h2{font-size:24px;font-weight:500;margin:7px 0 5px}.join-gift p{font-size:13px;color:#666;line-height:1.6;margin:0}.join-gift small{font-size:11px;text-align:left;margin:8px 0 0;color:#999}
+.guest{position:fixed;inset:0;z-index:100;background:rgba(20,18,16,.66);display:none;align-items:flex-end;justify-content:center}.guest.active{display:flex}.guest-inner{width:min(100%,430px);background:#F6F3EE;padding:22px 20px 30px;max-height:92vh;overflow:auto}
+.guest-top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:24px}.guest-logo{font-size:22px;font-weight:600}.guest-logo small{font-size:18px;font-weight:500}.guest-close{border:0;background:none;font-size:26px;color:#777;padding:0 2px}
+.guest-mark{font-size:11px;letter-spacing:.18em;color:#8c8c8c;margin-bottom:12px}.guest h1{font-size:34px;line-height:1.22;margin:0 0 12px}.guest-intro{font-size:13px;line-height:1.75;color:#666;margin:0 0 20px}
+.join-gift{background:#fff;border:1px solid var(--line);padding:18px 18px 16px;margin:0 0 18px}.join-gift .en{font-size:10px;letter-spacing:.17em;color:var(--muted)}.join-gift h2{font-size:24px;font-weight:500;margin:7px 0 5px}.join-gift p{font-size:13px;color:#666;line-height:1.6;margin:0}.join-gift small{display:block;font-size:11px;text-align:left;margin:8px 0 0;color:#999}
 .join-btn,.primary-btn{width:100%;border:0;background:#252525;color:#fff;padding:15px;font-size:15px}.guest-terms{display:block;text-align:center;color:#999;font-size:10px;line-height:1.6;margin-top:13px}
 .line-gift-coupon{display:none}.line-gift-coupon.visible{display:grid}
 .sheet-wrap{position:fixed;inset:0;background:#0008;z-index:80;display:none;align-items:flex-end;justify-content:center}.sheet-wrap.active{display:flex}.sheet{width:min(100%,430px);max-height:91vh;overflow:auto;background:var(--bg);border-radius:12px 12px 0 0;padding:0 20px 34px}.sheet-head{position:sticky;top:0;background:var(--bg);z-index:2;padding:16px 0 10px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.sheet-head button{border:0;background:none;font-size:22px}.sheet h2{font-size:29px;font-weight:500;margin:25px 0 7px}.sheet .meta{font-size:12px;color:#777;line-height:1.8;margin:0 0 18px}.photo-slot{width:100%;aspect-ratio:1.5/1;background:#e7e3dc;color:#979289;display:grid;place-items:center;font-size:11px;letter-spacing:.16em}.menu-section{margin-top:25px}.menu-section h3{font-size:13px;letter-spacing:.14em;color:#777;border-bottom:1px solid #aaa;padding-bottom:9px}.menu-row{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.menu-row b{font-size:14px;font-weight:500}.menu-row small{display:block;color:#999;margin-top:4px}.menu-row span{font-size:13px;white-space:nowrap}.notes{background:#fff;padding:18px;margin-top:24px}.notes h3{margin:0 0 10px;font-size:14px}.notes p{font-size:12px;color:#777;line-height:1.7;margin:3px 0}.coupon-detail{text-align:center;padding:22px 0}.coupon-number{font-size:66px;font-weight:400;color:#a7664f;margin:20px 0 4px}.coupon-code{background:#fff;padding:15px;margin:22px 0;font-size:19px;letter-spacing:.14em}.danger-btn{width:100%;border:1px solid #b7afa4;background:transparent;padding:13px;color:#777;margin-top:24px}.store-card,.offer{cursor:pointer}.photo-manager{display:none}.photo-manager.active{display:block}.photo-admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.photo-admin-card{background:#fff;border:1px solid var(--line);padding:10px}.photo-admin-card .photo-slot{aspect-ratio:1/1}.photo-admin-card b{display:block;font-size:12px;margin-top:8px}.photo-admin-card span{font-size:10px;color:#999}
@@ -70,7 +70,12 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
   <header class="top"><div class="brand">have a s'Eat <small>食習</small></div></header>
 
   <main id="home" class="page active">
-    <section class="member-card">
+    <section id="visitor-hero" class="visitor-hero">
+      <div class="photo-brief">PHOTO 01<br>茶杯放右側<br>左側保留壓字空間<br>真實食習餐桌・橫式 4:3</div>
+      <div class="hero-copy"><div class="en">WELCOME DRINK</div><h1>加入食習會員，<br>茶飲一杯請你喝。</h1><p>南西、北車、花博，共用同一個會員身份。</p><button class="hero-cta" onclick="openJoin()">LINE 一鍵加入會員 →</button></div>
+    </section>
+
+    <section id="member-card" class="member-card" hidden>
       <div><h2>食習會員</h2><p>Member</p><p style="margin-top:38px">No. DEMO_000001</p></div>
       <div class="qr"><svg viewBox="0 0 210 210" xmlns="http://www.w3.org/2000/svg" aria-label="Demo member QR code">
 <rect width="210" height="210" fill="#fff"/>
@@ -91,12 +96,12 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
 </svg></div>
     </section>
 
-    <div class="notice-head"><strong>NOTICE 公告</strong><span>查看全部</span></div>
-    <section class="notice-card"><b>WELCOME DRINK<br>FOR NEW MEMBERS</b><h3>新會員茶飲一杯，已放入優惠</h3><button onclick="go('offers')">查看新會員禮</button></section>
+    <div id="member-notice" hidden><div class="notice-head"><strong>NOTICE 公告</strong><span>查看全部</span></div>
+    <section class="notice-card"><b>WELCOME DRINK<br>FOR NEW MEMBERS</b><h3>新會員茶飲一杯，已放入優惠</h3><button onclick="go('offers')">查看新會員禮</button></section></div>
 
-    <section class="line-reward">
-      <div class="line-reward-photo"><b>PHOTO 02｜紅豆紫米粥實拍</b><span>橫式 16:9・單碗近拍・米白或淺灰桌面<br>自然光、看得到紅豆與紫米質地、不放文字</span></div>
-      <div class="line-reward-copy"><div class="en">ADD LINE FRIEND</div><h3>加入食習官方 LINE<br>紅豆紫米粥請你吃</h3><p>加入好友即可獲得一份兌換券，也能收到優惠到期與最新活動通知。</p><button id="line-join-btn" class="line-btn" onclick="claimLineGift()">加入官方 LINE，領取一份</button></div>
+    <section id="line-reward" class="line-reward" hidden>
+      <div class="photo-brief">PHOTO 02<br>粥碗放右下方<br>左側保留壓字空間<br>真實餐點・橫式 4:3</div>
+      <div class="hero-copy"><div class="en">ADD LINE FRIEND</div><h3>加入食習官方 LINE，<br>紅豆紫米粥請你吃。</h3><p>此處為 Demo 互動；加入後模擬發送一張兌換券。</p><button id="line-join-btn" class="line-btn" onclick="claimLineGift()">加入官方 LINE，領取一份 →</button></div>
     </section>
 
     <section class="feature">
@@ -166,11 +171,10 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
 
   <section id="guest" class="guest">
     <div class="guest-inner">
-      <div class="guest-top"><div class="guest-logo">have a s'Eat <small>食習</small></div></div>
+      <div class="guest-top"><div class="guest-logo">have a s'Eat <small>食習</small></div><button class="guest-close" onclick="closeJoin()" aria-label="關閉">×</button></div>
       <div class="guest-mark">HAVE A SEAT MEMBERSHIP</div>
       <h1>坐下來，<br>成為食習會員。</h1>
-      <p class="guest-intro">南西、北車、花博，使用同一個會員身份。優惠與會員券都收在這裡。</p>
-      <div class="join-photo"><b>PHOTO 01｜新會員茶飲實拍</b><span>橫式 3:2・一杯茶為主角、帶到食習餐桌質感<br>自然光、米白背景、不要人像、不要在照片上加字</span></div>
+      <p class="guest-intro">使用 LINE 一鍵加入。南西、北車、花博，共用同一個會員身份。</p>
       <div class="join-gift"><div class="en">WELCOME DRINK</div><h2>新會員茶飲一杯</h2><p>加入食習會員即可享用，不用點套餐。</p><small>每位會員限領一次・加入後 30 天內使用</small></div>
       <button class="join-btn" onclick="joinMember()">使用 LINE 一鍵加入會員</button>
       <span class="guest-terms">點擊即代表同意會員條款與個人資料使用說明<br>Demo 不會取得真實 LINE 資料</span>
@@ -188,7 +192,7 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
   </nav>
 </div>
 <script>
-const memberKey='seat-demo-member-v2';
+const memberKey='seat-demo-member-v3';
 const storeData={
   '誠品南西店':{name:'誠品南西店',en:'ESLITE NANXI',address:'台北市中山區南京西路14號4樓',hours:'11:00–22:00',note:['用餐時間 90 分鐘','餐點依當日供應為準','如有過敏原需求，請先告知服務人員'],menu:[['食習套餐','蔥油水晶雞','380'],['食習套餐','老醬腐乳雞','360'],['食習套餐','麻油雞','380'],['食習套餐','麻婆豆腐','320'],['麵食','蛤蜊雞湯麵','300'],['甜品','桂花釀杏仁豆腐','120']]},
   '台北車站Atre店':{name:'台北車站Atre店',en:'TAIPEI STATION',address:'台北市中正區忠孝西路一段49號B1',hours:'11:00–21:00',note:['無公休日','午仔魚現蒸約 15–20 分鐘','現炸餐點約 10 分鐘'],menu:[['北車限定','鰻魚飯','220'],['北車限定','鰻魚大滿足餐','380'],['套餐','午仔魚套餐','360'],['麵食','家常牛肉麵','320'],['甜品','山海豆花','120'],['點心','雞蛋糕','80']]},
@@ -201,29 +205,32 @@ const couponData={
   '桃酥兌換券':{en:'STORE COUPON',desc:'於圓山 MAJI 店內任一消費，即可兌換桃酥一份。',store:'圓山MAJI集食行樂店',expiry:'2026.10.31',code:'MAJI-COOKIE'},
   '小豬撲滿兌換券':{en:'STORE COUPON',desc:'於台北車站 Atre 店購買任一鰻魚飯，即可兌換小豬撲滿一份。',store:'台北車站Atre店',expiry:'2026.10.31',code:'ATRE-PIGGY'}
 };
-const lineFriendKey='seat-demo-line-friend-v2';
+const lineFriendKey='seat-demo-line-friend-v3';
 let current='home';
+function isMember(){return localStorage.getItem(memberKey)==='joined';}
 function hideAll(){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));}
-function go(id){current=id;hideAll();document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo(0,0);}
+function go(id){if(id==='member'&&!isMember()){openJoin();return}current=id;hideAll();document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo(0,0);}
 function story(id){hideAll();document.getElementById('story-'+id).classList.add('active');window.scrollTo(0,0);}
 function closeStory(){go('events');}
-function joinMember(){localStorage.setItem(memberKey,'joined');document.getElementById('guest').classList.remove('active');go('home');}
-function resetDemo(){localStorage.removeItem(memberKey);localStorage.removeItem(lineFriendKey);syncLineGift();document.getElementById('guest').classList.add('active');}
-function claimLineGift(){localStorage.setItem(lineFriendKey,'joined');syncLineGift();alert('Demo：已加入食習官方 LINE，紅豆紫米粥兌換券已放入「優惠」。');}
+function openJoin(){document.getElementById('guest').classList.add('active');}
+function closeJoin(){document.getElementById('guest').classList.remove('active');}
+function joinMember(){localStorage.setItem(memberKey,'joined');closeJoin();syncMemberState();go('home');}
+function resetDemo(){localStorage.removeItem(memberKey);localStorage.removeItem(lineFriendKey);syncMemberState();go('home');}
+function claimLineGift(){if(!isMember()){openJoin();return}localStorage.setItem(lineFriendKey,'joined');syncLineGift();alert('Demo：已加入食習官方 LINE，紅豆紫米粥兌換券已放入「優惠」。');}
 function syncLineGift(){const joined=localStorage.getItem(lineFriendKey)==='joined';const btn=document.getElementById('line-join-btn');const coupon=document.getElementById('line-gift-coupon');if(btn){btn.textContent=joined?'已加入，紅豆紫米粥券已領取':'加入官方 LINE，領取一份';btn.classList.toggle('claimed',joined)}if(coupon)coupon.classList.toggle('visible',joined)}
+function syncMemberState(){const joined=isMember();document.getElementById('visitor-hero').hidden=joined;document.getElementById('member-card').hidden=!joined;document.getElementById('member-notice').hidden=!joined;document.getElementById('line-reward').hidden=!joined;syncLineGift();}
 function openSheet(label,html){document.getElementById('sheet-label').textContent=label;document.getElementById('sheet-body').innerHTML=html;document.getElementById('sheet-wrap').classList.add('active');}
 function closeSheet(){document.getElementById('sheet-wrap').classList.remove('active');}
 function sheetBackdrop(e){if(e.target.id==='sheet-wrap')closeSheet();}
 function openStore(name){const s=storeData[name];if(!s)return;const groups={};s.menu.forEach(x=>(groups[x[0]]??=[]).push(x));const menus=Object.entries(groups).map(([g,items])=>`<div class="menu-section"><h3>${g}</h3>${items.map(x=>`<div class="menu-row"><div><b>${x[1]}</b><small>依現場供應</small></div><span>NT$ ${x[2]}</span></div>`).join('')}</div>`).join('');openSheet('STORE / MENU',`<div class="photo-slot">PHOTO — ${s.en}</div><h2>${s.name}</h2><p class="meta">${s.address}<br>營業時間 ${s.hours}</p>${menus}<div class="notes"><h3>DINING NOTES / 用餐提醒</h3>${s.note.map(x=>`<p>・${x}</p>`).join('')}</div>`);}
-function openCoupon(name){const c=couponData[name];if(!c)return;const mark=name.includes('茶飲')?'茶':name.includes('紫米')?'粥':'食';openSheet('COUPON DETAIL',`<div class="coupon-detail"><p class="section-en">${c.en}</p><div class="coupon-number">${mark}</div><h2>${name}</h2><p class="meta">${c.desc}</p><div class="coupon-code">${c.code}</div><div class="notes"><p>適用門市：${c.store}</p><p>使用期限：${c.expiry}</p><p>每位會員限使用一次，不得兌換現金。</p></div><button class="primary-btn" onclick="alert('Demo：實際版本將顯示核銷條碼')">出示使用條碼</button></div>`);}
+function openCoupon(name){if(!isMember()){openJoin();return}const c=couponData[name];if(!c)return;const mark=name.includes('茶飲')?'茶':name.includes('紫米')?'粥':'食';openSheet('COUPON DETAIL',`<div class="coupon-detail"><p class="section-en">${c.en}</p><div class="coupon-number">${mark}</div><h2>${name}</h2><p class="meta">${c.desc}</p><div class="coupon-code">${c.code}</div><div class="notes"><p>適用門市：${c.store}</p><p>使用期限：${c.expiry}</p><p>每位會員限使用一次，不得兌換現金。</p></div><button class="primary-btn" onclick="alert('Demo：實際版本將顯示核銷條碼')">出示使用條碼</button></div>`);}
 document.querySelectorAll('.store-card').forEach(el=>el.addEventListener('click',()=>openStore(el.querySelector('h2').textContent)));
 document.querySelectorAll('.store-mini').forEach(el=>el.addEventListener('click',()=>{go('stores');setTimeout(()=>openStore(el.querySelector('b').textContent),0)}));
 document.querySelectorAll('.offer').forEach(el=>el.addEventListener('click',()=>openCoupon(el.querySelector('h2').textContent)));
-const photoSlots=['新會員茶飲實拍｜橫式 3:2，單杯茶、食習餐桌、自然光','官方 LINE 入會禮｜橫式 16:9，紅豆紫米粥單碗近拍','OUR FLAVORS','南西門市','北車門市','花博門市','江戶川主視覺','江戶川故事 1–4','冰菓室地圖 1–4','會員禮遇 1–5','南西甜點券','花博桃酥券','北車小豬券'];
+const photoSlots=['新會員茶飲主視覺｜橫式 4:3，茶杯置右、左側留白供壓字','官方 LINE 入會禮｜橫式 4:3，紅豆紫米粥置右下、左側留白供壓字','OUR FLAVORS','南西門市','北車門市','花博門市','江戶川主視覺','江戶川故事 1–4','冰菓室地圖 1–4','會員禮遇 1–5','南西甜點券','花博桃酥券','北車小豬券'];
 document.getElementById('photo-grid').innerHTML=photoSlots.map((x,i)=>`<div class="photo-admin-card"><div class="photo-slot">PHOTO ${String(i+1).padStart(2,'0')}</div><b>${x}</b><span>待最後階段上傳</span></div>`).join('');
-syncLineGift();
+syncMemberState();
 function hashRoute(){if(location.hash==='#photos'){hideAll();document.getElementById('photos').classList.add('active');document.querySelector('.nav').style.display='none'}else{document.querySelector('.nav').style.display='grid';if(document.getElementById('photos').classList.contains('active'))go('home')}}
 window.addEventListener('hashchange',hashRoute);hashRoute();
-if(!localStorage.getItem(memberKey))document.getElementById('guest').classList.add('active');
 </script>
 </body></html>
