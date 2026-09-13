@@ -39,7 +39,7 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
 .feature img{width:100%;height:100%;object-fit:cover} .feature div{padding:22px 16px;display:flex;flex-direction:column;justify-content:center}
 .feature strong{font-size:17px;line-height:1.15;letter-spacing:.02em} .feature p{font-size:18px;line-height:1.45;margin:18px 0 0}
 .store-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.store-mini img{width:100%;aspect-ratio:1/1;object-fit:cover} .store-mini b{display:block;font-size:12px;margin-top:8px;line-height:1.25}
+.store-mini img{width:100%;aspect-ratio:1/1;object-fit:cover}.store-mini b{display:block;font-size:12px;margin-top:8px;line-height:1.25}.store-mini .store-hours{display:block;font-size:9px;color:#888;margin-top:5px}.store-mini .store-status{display:block;font-size:9px;color:#8d8174;margin-top:3px}.store-mini .store-status.is-open{color:#9a4b36;font-weight:700}
 .store-card{background:#fff;border-bottom:1px solid var(--line);margin-bottom:22px} .store-card img{width:100%;aspect-ratio:1.45/1;object-fit:cover;display:block}
 .store-card .copy{padding:18px 4px 22px} .store-card h2{font-size:25px;margin:0 0 10px;font-weight:500} .store-card p{margin:4px 0;color:var(--muted);font-size:13px}
 .event-tabs{display:flex;gap:10px;margin:18px 0 24px} .event-tabs button{background:#fff;border:1px solid var(--line);padding:10px 16px;color:#666} .event-tabs button.active{background:#333;color:#fff}
@@ -112,17 +112,17 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
 
     <div class="now-head"><strong>NOW OPEN 現在營業中</strong><span>查看全部</span></div>
     <div class="store-grid">
-      <div class="store-mini"><img src="/photos/03-dining-room.jpg" alt="食習誠品南西店"><b>誠品南西店</b></div>
-      <div class="store-mini"><img src="/photos/04-maji-store.jpg" alt="食習台北車站 Atre 店"><b>台北車站Atre店</b></div>
-      <div class="store-mini"><img src="/photos/05-food-counter.jpg" alt="食習圓山 MAJI 店"><b>圓山MAJI集食行樂店</b></div>
+      <div class="store-mini"><img src="/photos/03-dining-room.jpg" alt="食習誠品南西店"><b>誠品南西店</b><small class="store-hours">11:00–21:00</small><span class="store-status" data-open="11:00" data-close="21:00"></span></div>
+      <div class="store-mini"><img src="/photos/04-maji-store.jpg" alt="食習台北車站 Atre 店"><b>台北車站Atre店</b><small class="store-hours">11:00–21:00</small><span class="store-status" data-open="11:00" data-close="21:00"></span></div>
+      <div class="store-mini"><img src="/photos/05-food-counter.jpg" alt="食習圓山 MAJI 店"><b>圓山MAJI集食行樂店</b><small class="store-hours">11:30–20:00</small><span class="store-status" data-open="11:30" data-close="20:00"></span></div>
     </div>
   </main>
 
   <main id="stores" class="page">
     <p class="section-en">STORE</p><h1>門市</h1><p class="sub">尋找屬於你的食習時光</p>
-    <article class="store-card"><img src="/photos/03-dining-room.jpg" alt="食習誠品南西店"><div class="copy"><h2>誠品南西店</h2><p>台北市中山區南京西路14號4樓</p><p>營業中 11:00–22:00</p></div></article>
-    <article class="store-card"><img src="/photos/04-maji-store.jpg" alt="食習台北車站 Atre 店"><div class="copy"><h2>台北車站Atre店</h2><p>台北市中正區忠孝西路一段49號B1</p><p>營業中 11:00–21:00</p></div></article>
-    <article class="store-card"><img src="/photos/05-food-counter.jpg" alt="食習圓山 MAJI 店"><div class="copy"><h2>圓山MAJI集食行樂店</h2><p>台北市中山區玉門街1號</p><p>營業中 11:30–20:00</p></div></article>
+    <article class="store-card"><img src="/photos/03-dining-room.jpg" alt="食習誠品南西店"><div class="copy"><h2>誠品南西店</h2><p>台北市中山區南京西路14號4樓</p><p>營業時間 11:00–21:00</p></div></article>
+    <article class="store-card"><img src="/photos/04-maji-store.jpg" alt="食習台北車站 Atre 店"><div class="copy"><h2>台北車站Atre店</h2><p>台北市中正區忠孝西路一段49號B1</p><p>營業時間 11:00–21:00</p></div></article>
+    <article class="store-card"><img src="/photos/05-food-counter.jpg" alt="食習圓山 MAJI 店"><div class="copy"><h2>圓山MAJI集食行樂店</h2><p>台北市中山區玉門街1號</p><p>營業時間 11:30–20:00</p></div></article>
   </main>
 
   <main id="events" class="page">
@@ -196,7 +196,7 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
 <script>
 const memberKey='seat-demo-member-v3';
 const storeData={
-  '誠品南西店':{name:'誠品南西店',en:'ESLITE NANXI',address:'台北市中山區南京西路14號4樓',hours:'11:00–22:00',note:['用餐時間 90 分鐘','餐點依當日供應為準','如有過敏原需求，請先告知服務人員'],menu:[['食習套餐','蔥油水晶雞','380'],['食習套餐','老醬腐乳雞','360'],['食習套餐','麻油雞','380'],['食習套餐','麻婆豆腐','320'],['麵食','蛤蜊雞湯麵','300'],['甜品','桂花釀杏仁豆腐','120']]},
+  '誠品南西店':{name:'誠品南西店',en:'ESLITE NANXI',address:'台北市中山區南京西路14號4樓',hours:'11:00–21:00',note:['用餐時間 90 分鐘','餐點依當日供應為準','如有過敏原需求，請先告知服務人員'],menu:[['食習套餐','蔥油水晶雞','380'],['食習套餐','老醬腐乳雞','360'],['食習套餐','麻油雞','380'],['食習套餐','麻婆豆腐','320'],['麵食','蛤蜊雞湯麵','300'],['甜品','桂花釀杏仁豆腐','120']]},
   '台北車站Atre店':{name:'台北車站Atre店',en:'TAIPEI STATION',address:'台北市中正區忠孝西路一段49號B1',hours:'11:00–21:00',note:['無公休日','午仔魚現蒸約 15–20 分鐘','現炸餐點約 10 分鐘'],menu:[['北車限定','鰻魚飯','220'],['北車限定','鰻魚大滿足餐','380'],['套餐','午仔魚套餐','360'],['麵食','家常牛肉麵','320'],['甜品','山海豆花','120'],['點心','雞蛋糕','80']]},
   '圓山MAJI集食行樂店':{name:'圓山MAJI集食行樂店',en:'YUANSHAN MAJI',address:'台北市中山區玉門街1號',hours:'11:30–20:00',note:['營業時間依園區公告','部分品項每日限量','優惠券使用規則依券面說明'],menu:[['食習套餐','蔥油水晶雞','380'],['食習套餐','麻婆豆腐','320'],['麵食','蛤蜊雞湯麵','300'],['甜品','手工桃酥','80']]}
 };
@@ -221,6 +221,32 @@ function resetDemo(){localStorage.removeItem(memberKey);localStorage.removeItem(
 function claimLineGift(){if(!isMember()){openJoin();return}localStorage.setItem(lineFriendKey,'joined');syncLineGift();alert('Demo：已加入食習官方 LINE，紅豆紫米粥兌換券已放入「優惠」。');}
 function syncLineGift(){const joined=localStorage.getItem(lineFriendKey)==='joined';const btn=document.getElementById('line-join-btn');const coupon=document.getElementById('line-gift-coupon');if(btn){btn.textContent=joined?'已加入，紅豆紫米粥券已領取':'加入官方 LINE，領取一份';btn.classList.toggle('claimed',joined)}if(coupon)coupon.classList.toggle('visible',joined)}
 function syncMemberState(){const joined=isMember();document.getElementById('visitor-hero').hidden=joined;document.getElementById('member-card').hidden=!joined;document.getElementById('member-notice').hidden=!joined;document.getElementById('line-reward').hidden=!joined;syncLineGift();}
+function timeToMinutes(value){const [hours,minutes]=value.split(':').map(Number);return hours*60+minutes;}
+function syncStoreHours(){
+  const now=new Date();
+  const currentMinutes=now.getHours()*60+now.getMinutes();
+  let openStores=0;
+  let upcomingStores=0;
+  document.querySelectorAll('.store-status').forEach(status=>{
+    const openAt=timeToMinutes(status.dataset.open);
+    const closeAt=timeToMinutes(status.dataset.close);
+    status.classList.remove('is-open');
+    if(currentMinutes<openAt){
+      upcomingStores++;
+      status.textContent=`尚未營業・${status.dataset.open} 開店`;
+    }else if(currentMinutes<closeAt){
+      openStores++;
+      status.classList.add('is-open');
+      status.textContent=`營業中・至 ${status.dataset.close}`;
+    }else{
+      status.textContent='今日已打烊';
+    }
+  });
+  const heading=document.querySelector('.now-head strong');
+  if(heading){
+    heading.textContent=openStores?'NOW OPEN 現在營業中':upcomingStores?'OPENING SOON 尚未營業':'CLOSED 今日已打烊';
+  }
+}
 function openSheet(label,html){document.getElementById('sheet-label').textContent=label;document.getElementById('sheet-body').innerHTML=html;document.getElementById('sheet-wrap').classList.add('active');}
 function closeSheet(){document.getElementById('sheet-wrap').classList.remove('active');}
 function sheetBackdrop(e){if(e.target.id==='sheet-wrap')closeSheet();}
@@ -239,6 +265,8 @@ const photoSlots=[
 ];
 document.getElementById('photo-grid').innerHTML=photoSlots.map((x,i)=>`<div class="photo-admin-card"><img src="${x.src}" alt="${x.name}"><b>PHOTO ${String(i+1).padStart(2,'0')}｜${x.name}</b><span>已套用</span></div>`).join('');
 syncMemberState();
+syncStoreHours();
+setInterval(syncStoreHours,60000);
 function hashRoute(){if(location.hash==='#photos'){hideAll();document.getElementById('photos').classList.add('active');document.querySelector('.nav').style.display='none'}else{document.querySelector('.nav').style.display='grid';if(document.getElementById('photos').classList.contains('active'))go('home')}}
 window.addEventListener('hashchange',hashRoute);hashRoute();
 </script>
