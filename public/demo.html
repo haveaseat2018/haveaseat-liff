@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>食習會員 Demo</title>
+<style>
+:root {
+  --bg:#F6F3EE; --card:#fff; --text:#333; --muted:#8C8C8C; --line:#E2DDD5; --beige:#DED5C7;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#101315;font-family:"Helvetica Neue",Arial,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;color:var(--text)}
+body{display:flex;justify-content:center;min-height:100vh}
+#app{width:min(100%,430px);min-height:100vh;background:var(--bg);position:relative;padding-bottom:76px}
+.top{height:70px;background:#fff;display:flex;align-items:center;padding:0 20px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.brand{font-size:24px;font-weight:600;letter-spacing:.01em} .brand small{font-weight:500;font-size:20px}
+.page{display:none;padding:24px 20px 34px} .page.active{display:block}
+.section-en{font-size:13px;letter-spacing:.14em;color:var(--muted);margin:0 0 8px}
+h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(--muted);line-height:1.6;margin:0 0 24px}
+.member-card{background:#ded3c2;padding:22px;border-radius:4px;display:grid;grid-template-columns:1fr 116px;gap:12px;align-items:center;margin-bottom:28px}
+.member-card h2{font-size:28px;margin:0 0 4px;font-weight:500} .member-card p{margin:0;color:#555;font-size:13px}
+.qr{width:116px;height:116px;background:#fff;border:8px solid #fff;display:grid;place-items:center}
+.qr svg{width:100%;height:100%;display:block}
+.notice-head,.now-head{display:flex;align-items:baseline;justify-content:space-between;margin:18px 0 10px}
+.notice-head strong,.now-head strong{font-size:24px;letter-spacing:.04em} .notice-head span,.now-head span{font-size:12px;color:var(--muted)}
+.notice-card{background:#fff;border:1px solid var(--line);padding:20px;margin-bottom:18px}
+.notice-card b{font-size:22px;display:block;letter-spacing:.03em} .notice-card h3{font-size:20px;margin:4px 0 16px;font-weight:500}
+.notice-card button{width:100%;border:0;background:var(--beige);padding:12px;font-size:15px}
+.feature{display:grid;grid-template-columns:55% 45%;background:#E7E9E8;min-height:165px;margin-bottom:24px;overflow:hidden}
+.feature img{width:100%;height:100%;object-fit:cover} .feature div{padding:22px 16px;display:flex;flex-direction:column;justify-content:center}
+.feature strong{font-size:17px;line-height:1.15;letter-spacing:.02em} .feature p{font-size:18px;line-height:1.45;margin:18px 0 0}
+.store-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.store-mini img{width:100%;aspect-ratio:1/1;object-fit:cover} .store-mini b{display:block;font-size:12px;margin-top:8px;line-height:1.25}
+.store-card{background:#fff;border-bottom:1px solid var(--line);margin-bottom:22px} .store-card img{width:100%;aspect-ratio:1.45/1;object-fit:cover;display:block}
+.store-card .copy{padding:18px 4px 22px} .store-card h2{font-size:25px;margin:0 0 10px;font-weight:500} .store-card p{margin:4px 0;color:var(--muted);font-size:13px}
+.event-tabs{display:flex;gap:10px;margin:18px 0 24px} .event-tabs button{background:#fff;border:1px solid var(--line);padding:10px 16px;color:#666} .event-tabs button.active{background:#333;color:#fff}
+.event-card{display:block;border:0;background:transparent;padding:0 0 24px;margin-bottom:24px;border-bottom:1px solid var(--line);width:100%;text-align:left}
+.event-card img{width:100%;display:block;object-fit:cover} .event-card.poster img{aspect-ratio:1/1.28} .event-card span{display:block;font-size:10px;letter-spacing:.16em;color:var(--muted);margin:16px 0 10px}
+.event-card h2{font-size:25px;margin:0 0 8px;font-weight:500} .event-card p{font-size:13px;color:#666;margin:0}
+.story{display:none} .story.active{display:block} .back{border:0;background:none;padding:0 0 16px;font-size:12px;letter-spacing:.12em;color:#555}
+.story img{width:100%;display:block;margin-bottom:0} .story-copy{padding:24px 0;border-bottom:1px solid var(--line)} .story-copy h2{font-size:26px;margin:0 0 12px;font-weight:500} .story-copy p{font-size:14px;line-height:1.8;color:#666;margin:0}
+.offer-list{display:grid} .offer{display:grid;grid-template-columns:40% 60%;gap:0;padding:22px 0;border-bottom:1px solid var(--line);min-height:170px}
+.offer img{width:100%;height:100%;object-fit:cover;background:#fff} .offer-copy{padding:6px 0 6px 20px}
+.offer-copy .en{font-size:10px;letter-spacing:.16em;color:var(--muted)} .offer-copy h2{font-size:24px;line-height:1.3;margin:16px 0 8px;font-weight:500}
+.offer-copy p,.offer-copy small{font-size:12px;color:#666;line-height:1.6;display:block}
+.newmember-img{background:#fff;display:grid;place-items:center;min-height:180px;border:1px solid #eee} .newmember-img b{font-size:68px;font-weight:400;color:#a7664f;line-height:1} .newmember-img span{display:block;font-size:13px;letter-spacing:.12em;text-align:center}
+.profile{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)} .profile div{display:flex;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--line);font-size:14px} .profile div:last-child{border:0}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,430px);height:72px;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);z-index:30;padding-bottom:env(safe-area-inset-bottom)}
+.nav button{border:0;background:none;color:#999;font-size:10px;padding:8px 2px} .nav button.active{color:#222} .nav .ico{font-size:22px;display:block;line-height:1.1;margin-bottom:2px}
+.demo-note{font-size:10px;color:#aaa;text-align:center;margin:20px 0}
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="top"><div class="brand">have a s'Eat <small>食習</small></div></header>
+
+  <main id="home" class="page active">
+    <section class="member-card">
+      <div><h2>食習會員</h2><p>Member</p><p style="margin-top:38px">No. DEMO_000001</p></div>
+      <div class="qr"><svg viewBox="0 0 210 210" xmlns="http://www.w3.org/2000/svg" aria-label="Demo member QR code">
+<rect width="210" height="210" fill="#fff"/>
+<g fill="#111">
+<rect x="10" y="10" width="60" height="60"/><rect x="20" y="20" width="40" height="40" fill="#fff"/><rect x="30" y="30" width="20" height="20"/>
+<rect x="140" y="10" width="60" height="60"/><rect x="150" y="20" width="40" height="40" fill="#fff"/><rect x="160" y="30" width="20" height="20"/>
+<rect x="10" y="140" width="60" height="60"/><rect x="20" y="150" width="40" height="40" fill="#fff"/><rect x="30" y="160" width="20" height="20"/>
+<rect x="85" y="10" width="10" height="10"/><rect x="105" y="10" width="20" height="10"/><rect x="85" y="30" width="20" height="10"/>
+<rect x="115" y="30" width="10" height="20"/><rect x="85" y="55" width="15" height="15"/><rect x="110" y="55" width="20" height="10"/>
+<rect x="80" y="85" width="10" height="10"/><rect x="100" y="80" width="20" height="10"/><rect x="130" y="85" width="10" height="20"/>
+<rect x="150" y="85" width="20" height="10"/><rect x="180" y="80" width="10" height="20"/><rect x="85" y="105" width="20" height="10"/>
+<rect x="115" y="105" width="10" height="20"/><rect x="140" y="110" width="20" height="10"/><rect x="170" y="110" width="20" height="20"/>
+<rect x="80" y="130" width="20" height="10"/><rect x="110" y="135" width="20" height="10"/><rect x="145" y="135" width="10" height="20"/>
+<rect x="165" y="145" width="25" height="10"/><rect x="85" y="155" width="10" height="20"/><rect x="105" y="160" width="20" height="10"/>
+<rect x="130" y="165" width="10" height="20"/><rect x="150" y="175" width="20" height="10"/><rect x="180" y="165" width="10" height="20"/>
+<rect x="80" y="185" width="20" height="10"/><rect x="110" y="185" width="15" height="15"/>
+</g>
+</svg></div>
+    </section>
+
+    <div class="notice-head"><strong>NOTICE 公告</strong><span>查看全部</span></div>
+    <section class="notice-card"><b>JOIN AND GET A<br>50 TWD VOUCHER</b><h3>加入即享50元折價券</h3><button onclick="go('offers')">查看優惠</button></section>
+
+    <section class="feature">
+      <img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E" alt="">
+      <div><strong>OUR FLAVORS,<br>DAILY ROUTINE</strong><p>食習的滋味，<br>生活秩序</p></div>
+    </section>
+
+    <div class="now-head"><strong>NOW OPEN 現在營業中</strong><span>查看全部</span></div>
+    <div class="store-grid">
+      <div class="store-mini"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><b>誠品南西店</b></div>
+      <div class="store-mini"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><b>台北車站Atre店</b></div>
+      <div class="store-mini"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><b>圓山MAJI集食行樂店</b></div>
+    </div>
+  </main>
+
+  <main id="stores" class="page">
+    <p class="section-en">STORE</p><h1>門市</h1><p class="sub">尋找屬於你的食習時光</p>
+    <article class="store-card"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><div class="copy"><h2>誠品南西店</h2><p>台北市中山區南京西路14號4樓</p><p>營業中 11:00–22:00</p></div></article>
+    <article class="store-card"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><div class="copy"><h2>台北車站Atre店</h2><p>台北市中正區忠孝西路一段49號B1</p><p>營業中 11:00–21:00</p></div></article>
+    <article class="store-card"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><div class="copy"><h2>圓山MAJI集食行樂店</h2><p>台北市中山區玉門街1號</p><p>營業中 11:30–20:00</p></div></article>
+  </main>
+
+  <main id="events" class="page">
+    <p class="section-en">EVENT</p><h1>活動</h1><p class="sub">聯名・故事・這一季的食習。</p>
+    <div class="event-tabs"><button class="active">FEATURED / 精選</button><button>COLLAB / 聯名</button><button>STORY / 故事</button></div>
+    <button class="event-card poster" onclick="story('edo')"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><span>COLLABORATION</span><h2>食習 × 江戶川</h2><p>一尾鰻魚，兩種飲食文化的相遇。</p></button>
+    <button class="event-card poster" onclick="story('ice')"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><span>SEASONAL PROJECT</span><h2>風格冰菓室地圖 2026</h2><p>A Stylish Ice Parlor Map of Taiwan</p></button>
+    <button class="event-card poster" onclick="story('member')"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><span>MEMBER BENEFIT</span><h2>2026 會員升級禮遇</h2><p>加入神農生活會員，購物更便利，會員更有禮。</p></button>
+  </main>
+
+  <main id="offers" class="page">
+    <p class="section-en">COUPONS</p><h1>會員優惠</h1><p class="sub">食習會員專屬券・每一張，都有它的使用方式。</p>
+    <div class="offer-list">
+      <article class="offer"><div class="newmember-img"><div><span>NEW MEMBER</span><b>50</b><span>元折價券</span></div></div><div class="offer-copy"><div class="en">WELCOME COUPON</div><h2>50 元折價券</h2><p>加入後 30 天內使用</p><small>全台食習</small></div></article>
+      <article class="offer"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><div class="offer-copy"><div class="en">STORE COUPON</div><h2>桂花釀杏仁豆腐兌換券</h2><p>消費達店內低消</p><small>誠品南西店</small></div></article>
+      <article class="offer"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><div class="offer-copy"><div class="en">STORE COUPON</div><h2>桃酥兌換券</h2><p>店內任一消費</p><small>圓山MAJI集食行樂店</small></div></article>
+      <article class="offer"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><div class="offer-copy"><div class="en">STORE COUPON</div><h2>小豬撲滿兌換券</h2><p>購買任一鰻魚飯</p><small>台北車站Atre店</small></div></article>
+    </div>
+  </main>
+
+  <main id="member" class="page">
+    <p class="section-en">MEMBER</p><h1>我的</h1><p class="sub">Demo Member</p>
+    <section class="profile"><div><span>會員碼</span><b>DEMO_000001</b></div><div><span>手機</span><b>09•• ••• •••</b></div><div><span>生日</span><b>尚未填寫</b></div><div><span>Email</span><b style="color:#999">尚未填寫</b></div></section>
+    <p class="demo-note">展示版：所有照片已內嵌，不依賴 AppDeploy storage 或手機快取。</p>
+  </main>
+
+  <main id="story-edo" class="page story"><button class="back" onclick="closeStory()">← EVENT</button>
+    <img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><div class="story-copy"><h2>食習 × 江戶川</h2><p>當台日風味相遇，會激盪出怎樣的火花。食習將台灣四季風土放進江戶川的職人鰻魚飯裡。</p></div>
+    <img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E">
+  </main>
+
+  <main id="story-ice" class="page story"><button class="back" onclick="closeStory()">← EVENT</button>
+    <img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E">
+  </main>
+
+  <main id="story-member" class="page story"><button class="back" onclick="closeStory()">← EVENT</button>
+    <img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E">
+  </main>
+
+  <nav class="nav">
+    <button class="active" data-page="home" onclick="go('home')"><span class="ico">⌂</span>HOME<br>首頁</button>
+    <button data-page="stores" onclick="go('stores')"><span class="ico">◇</span>STORE<br>門市</button>
+    <button data-page="events" onclick="go('events')"><span class="ico">□</span>EVENT<br>活動</button>
+    <button data-page="offers" onclick="go('offers')"><span class="ico">▭</span>COUPON<br>優惠</button>
+    <button data-page="member" onclick="go('member')"><span class="ico">○</span>MEMBER<br>我的</button>
+  </nav>
+</div>
+<script>
+let current='home';
+function hideAll(){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));}
+function go(id){
+  current=id; hideAll(); document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+  window.scrollTo(0,0);
+}
+function story(id){hideAll();document.getElementById('story-'+id).classList.add('active');window.scrollTo(0,0);}
+function closeStory(){go('events');}
+</script>
+</body></html>
