@@ -25,6 +25,7 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
 .qr svg{width:100%;height:100%;display:block}
 .notice-head,.now-head{display:flex;align-items:baseline;justify-content:space-between;margin:18px 0 10px}
 .notice-head strong,.now-head strong{font-size:24px;letter-spacing:.04em} .notice-head span,.now-head span{font-size:12px;color:var(--muted)}
+.now-head button{border:0;background:none;padding:8px 0 8px 12px;color:var(--muted);font:inherit;font-size:12px;cursor:pointer}
 .notice-card{background:#fff;border:1px solid var(--line);padding:20px;margin-bottom:18px}
 .notice-card b{font-size:22px;display:block;letter-spacing:.03em} .notice-card h3{font-size:20px;margin:4px 0 16px;font-weight:500}
 .notice-card button{width:100%;border:0;background:var(--beige);padding:12px;font-size:15px}
@@ -110,7 +111,7 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
       <div><strong>OUR FLAVORS,<br>DAILY ROUTINE</strong><p>食習的滋味，<br>生活秩序</p></div>
     </section>
 
-    <div class="now-head"><strong>NOW OPEN 現在營業中</strong><span>查看全部</span></div>
+    <div class="now-head"><strong>NOW OPEN 現在營業中</strong><button type="button" onclick="go('stores')" aria-label="查看全部門市">查看全部 ›</button></div>
     <div class="store-grid">
       <div class="store-mini"><img src="/photos/03-dining-room.jpg" alt="食習誠品南西店"><b>誠品南西店</b><small class="store-hours">週日–四 11:00–22:00</small><span class="store-status" data-open="11:00" data-closes="22:00,22:00,22:00,22:00,22:00,22:30,22:30"></span></div>
       <div class="store-mini"><img src="/photos/04-maji-store.jpg" alt="食習台北車站 Atre 店"><b>台北車站Atre店</b><small class="store-hours">11:00–21:00</small><span class="store-status" data-open="11:00" data-close="21:00"></span></div>
