@@ -112,17 +112,17 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
 
     <div class="now-head"><strong>NOW OPEN 現在營業中</strong><span>查看全部</span></div>
     <div class="store-grid">
-      <div class="store-mini"><img src="/photos/03-dining-room.jpg" alt="食習誠品南西店"><b>誠品南西店</b><small class="store-hours">11:00–21:00</small><span class="store-status" data-open="11:00" data-close="21:00"></span></div>
+      <div class="store-mini"><img src="/photos/03-dining-room.jpg" alt="食習誠品南西店"><b>誠品南西店</b><small class="store-hours">週日–四 11:00–22:00</small><span class="store-status" data-open="11:00" data-closes="22:00,22:00,22:00,22:00,22:00,22:30,22:30"></span></div>
       <div class="store-mini"><img src="/photos/04-maji-store.jpg" alt="食習台北車站 Atre 店"><b>台北車站Atre店</b><small class="store-hours">11:00–21:00</small><span class="store-status" data-open="11:00" data-close="21:00"></span></div>
-      <div class="store-mini"><img src="/photos/05-food-counter.jpg" alt="食習圓山 MAJI 店"><b>圓山MAJI集食行樂店</b><small class="store-hours">11:30–20:00</small><span class="store-status" data-open="11:30" data-close="20:00"></span></div>
+      <div class="store-mini"><img src="/photos/05-food-counter.jpg" alt="食習圓山 MAJI 店"><b>圓山MAJI集食行樂店</b><small class="store-hours">週一–五 11:30–19:00</small><span class="store-status" data-open="11:30" data-closes="20:00,19:00,19:00,19:00,19:00,19:00,20:00"></span></div>
     </div>
   </main>
 
   <main id="stores" class="page">
     <p class="section-en">STORE</p><h1>門市</h1><p class="sub">尋找屬於你的食習時光</p>
-    <article class="store-card"><img src="/photos/03-dining-room.jpg" alt="食習誠品南西店"><div class="copy"><h2>誠品南西店</h2><p>台北市中山區南京西路14號4樓</p><p>營業時間 11:00–21:00</p></div></article>
+    <article class="store-card"><img src="/photos/03-dining-room.jpg" alt="食習誠品南西店"><div class="copy"><h2>誠品南西店</h2><p>台北市中山區南京西路14號4樓</p><p>週日至週四 11:00–22:00<br>週五至週六 11:00–22:30</p></div></article>
     <article class="store-card"><img src="/photos/04-maji-store.jpg" alt="食習台北車站 Atre 店"><div class="copy"><h2>台北車站Atre店</h2><p>台北市中正區忠孝西路一段49號B1</p><p>營業時間 11:00–21:00</p></div></article>
-    <article class="store-card"><img src="/photos/05-food-counter.jpg" alt="食習圓山 MAJI 店"><div class="copy"><h2>圓山MAJI集食行樂店</h2><p>台北市中山區玉門街1號</p><p>營業時間 11:30–20:00</p></div></article>
+    <article class="store-card"><img src="/photos/05-food-counter.jpg" alt="食習圓山 MAJI 店"><div class="copy"><h2>圓山MAJI集食行樂店</h2><p>台北市中山區玉門街1號</p><p>週一至週五 11:30–19:00<br>週六至週日 11:30–20:00</p></div></article>
   </main>
 
   <main id="events" class="page">
@@ -196,9 +196,9 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
 <script>
 const memberKey='seat-demo-member-v3';
 const storeData={
-  '誠品南西店':{name:'誠品南西店',en:'ESLITE NANXI',address:'台北市中山區南京西路14號4樓',hours:'11:00–21:00',note:['用餐時間 90 分鐘','餐點依當日供應為準','如有過敏原需求，請先告知服務人員'],menu:[['食習套餐','蔥油水晶雞','380'],['食習套餐','老醬腐乳雞','360'],['食習套餐','麻油雞','380'],['食習套餐','麻婆豆腐','320'],['麵食','蛤蜊雞湯麵','300'],['甜品','桂花釀杏仁豆腐','120']]},
+  '誠品南西店':{name:'誠品南西店',en:'ESLITE NANXI',address:'台北市中山區南京西路14號4樓',hours:'週日至週四 11:00–22:00｜週五至週六 11:00–22:30',note:['用餐時間 90 分鐘','餐點依當日供應為準','如有過敏原需求，請先告知服務人員'],menu:[['食習套餐','蔥油水晶雞','380'],['食習套餐','老醬腐乳雞','360'],['食習套餐','麻油雞','380'],['食習套餐','麻婆豆腐','320'],['麵食','蛤蜊雞湯麵','300'],['甜品','桂花釀杏仁豆腐','120']]},
   '台北車站Atre店':{name:'台北車站Atre店',en:'TAIPEI STATION',address:'台北市中正區忠孝西路一段49號B1',hours:'11:00–21:00',note:['無公休日','午仔魚現蒸約 15–20 分鐘','現炸餐點約 10 分鐘'],menu:[['北車限定','鰻魚飯','220'],['北車限定','鰻魚大滿足餐','380'],['套餐','午仔魚套餐','360'],['麵食','家常牛肉麵','320'],['甜品','山海豆花','120'],['點心','雞蛋糕','80']]},
-  '圓山MAJI集食行樂店':{name:'圓山MAJI集食行樂店',en:'YUANSHAN MAJI',address:'台北市中山區玉門街1號',hours:'11:30–20:00',note:['營業時間依園區公告','部分品項每日限量','優惠券使用規則依券面說明'],menu:[['食習套餐','蔥油水晶雞','380'],['食習套餐','麻婆豆腐','320'],['麵食','蛤蜊雞湯麵','300'],['甜品','手工桃酥','80']]}
+  '圓山MAJI集食行樂店':{name:'圓山MAJI集食行樂店',en:'YUANSHAN MAJI',address:'台北市中山區玉門街1號',hours:'週一至週五 11:30–19:00｜週六至週日 11:30–20:00',note:['營業時間依園區公告','部分品項每日限量','優惠券使用規則依券面說明'],menu:[['食習套餐','蔥油水晶雞','380'],['食習套餐','麻婆豆腐','320'],['麵食','蛤蜊雞湯麵','300'],['甜品','手工桃酥','80']]}
 };
 const couponData={
   '茶飲一杯招待券':{en:'WELCOME COUPON',desc:'加入食習會員即可兌換茶飲一杯，不須搭配套餐或其他消費。',store:'全台食習',expiry:'加入後 30 天',code:'WELCOME-TEA'},
@@ -224,12 +224,16 @@ function syncMemberState(){const joined=isMember();document.getElementById('visi
 function timeToMinutes(value){const [hours,minutes]=value.split(':').map(Number);return hours*60+minutes;}
 function syncStoreHours(){
   const now=new Date();
+  const day=now.getDay();
   const currentMinutes=now.getHours()*60+now.getMinutes();
   let openStores=0;
   let upcomingStores=0;
   document.querySelectorAll('.store-status').forEach(status=>{
     const openAt=timeToMinutes(status.dataset.open);
-    const closeAt=timeToMinutes(status.dataset.close);
+    const closeTime=status.dataset.closes?status.dataset.closes.split(',')[day]:status.dataset.close;
+    const closeAt=timeToMinutes(closeTime);
+    const hours=status.closest('.store-mini').querySelector('.store-hours');
+    if(hours)hours.textContent=`今日 ${status.dataset.open}–${closeTime}`;
     status.classList.remove('is-open');
     if(currentMinutes<openAt){
       upcomingStores++;
@@ -237,7 +241,7 @@ function syncStoreHours(){
     }else if(currentMinutes<closeAt){
       openStores++;
       status.classList.add('is-open');
-      status.textContent=`營業中・至 ${status.dataset.close}`;
+      status.textContent=`營業中・至 ${closeTime}`;
     }else{
       status.textContent='今日已打烊';
     }
