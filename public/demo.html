@@ -144,7 +144,7 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
     <p class="section-en">EVENT</p><h1>活動</h1><p class="sub">聯名・故事・這一季的食習。</p>
     <div class="event-list">
       <button class="event-card" onclick="story('edo')"><img data-edo-photo="0" alt="食習與江戶川聯名烤鰻魚"><div class="event-copy"><span>聯名</span><h2>食習 × 江戶川</h2><p>台灣四季風土，遇見江戶川職人鰻魚。</p><b class="more">了解更多 ›</b></div></button>
-      <button class="event-card" onclick="story('ice')"><div class="event-color weekly">每週<small>店內活動</small></div><div class="event-copy"><span>店內活動</span><h2>一席台灣味</h2><p>跟著當季食材，重新認識家常料理。</p><b class="more">了解更多 ›</b></div></button>
+      <button class="event-card" onclick="story('ice')"><img src="/event-images/ice-map-01.jpg" alt="風格冰菓室地圖 2026"><div class="event-copy"><span>風格企劃</span><h2>風格冰菓室地圖 2026</h2><p>走進台灣人的夏日冰菓記憶。</p><b class="more">了解更多 ›</b></div></button>
       <button class="event-card" onclick="story('member')"><img src="/event-images/shennong-member-01.svg" alt="2026 神農生活會員升級禮遇"><div class="event-copy"><span>會員活動</span><h2>2026 會員升級禮遇</h2><p>加入神農生活會員，購物更便利，會員更有禮。</p><b class="more">了解更多 ›</b></div></button>
     </div>
   </main>
@@ -179,7 +179,14 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
   </main>
 
   <main id="story-ice" class="page story"><button class="back" onclick="closeStory()">← EVENT</button>
-    <img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%27600%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E7E3DC%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27%23979289%27 font-family=%27Arial%27 font-size=%2724%27%3EPHOTO%3C/text%3E%3C/svg%3E">
+    <div class="edo-intro"><p class="section-en">STYLE ICE PARLOR</p><h1>風格冰菓室地圖 2026</h1><p>向下滑動閱讀完整活動・點圖片可放大</p></div>
+    <div class="edo-panels">
+      <button class="story-image" onclick="openLightbox('ice',0)" aria-label="放大冰菓室活動主視覺"><img src="/event-images/ice-map-01.jpg" alt="風格冰菓室地圖 2026 主視覺"></button>
+      <button class="story-image" onclick="openLightbox('ice',1)" aria-label="放大冰菓室地圖介紹"><img src="/event-images/ice-map-02.jpg" alt="風格冰菓室地圖企劃介紹"></button>
+      <button class="story-image" onclick="openLightbox('ice',2)" aria-label="放大冰菓室地圖內容"><img src="/event-images/ice-map-03.jpg" alt="風格冰菓室地圖展開內容"></button>
+      <button class="story-image" onclick="openLightbox('ice',3)" aria-label="放大集章任務內容"><img src="/event-images/ice-map-04.jpg" alt="風格冰菓室地圖集章任務"></button>
+      <button class="story-image" onclick="openLightbox('ice',4)" aria-label="放大食習活動內容"><img src="/event-images/ice-map-05.jpg" alt="食習風格冰菓室活動內容"></button>
+    </div>
   </main>
 
   <main id="story-member" class="page story"><button class="back" onclick="closeStory()">← EVENT</button>
@@ -247,7 +254,8 @@ function go(id){if(id==='member'&&!isMember()){openJoin();return}current=id;hide
 function story(id){hideAll();document.getElementById('story-'+id).classList.add('active');window.scrollTo(0,0);}
 function closeStory(){go('events');}
 const memberBenefitPhotos=['/event-images/shennong-member-01.svg','/event-images/shennong-member-02.svg','/event-images/shennong-member-03.svg','/event-images/shennong-member-04.svg','/event-images/shennong-member-05.svg'];
-function openLightbox(group,index){const photos=group==='member'?memberBenefitPhotos:window.EDO_PHOTOS;const box=document.getElementById('image-lightbox');document.getElementById('lightbox-image').src=photos[index];box.classList.add('active');box.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+const iceMapPhotos=['/event-images/ice-map-01.jpg','/event-images/ice-map-02.jpg','/event-images/ice-map-03.jpg','/event-images/ice-map-04.jpg','/event-images/ice-map-05.jpg'];
+function openLightbox(group,index){const photos=group==='member'?memberBenefitPhotos:group==='ice'?iceMapPhotos:window.EDO_PHOTOS;const box=document.getElementById('image-lightbox');document.getElementById('lightbox-image').src=photos[index];box.classList.add('active');box.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
 function closeLightbox(event){if(event&&event.target.id==='lightbox-image')return;const box=document.getElementById('image-lightbox');box.classList.remove('active');box.setAttribute('aria-hidden','true');document.body.style.overflow='';if(event)event.stopPropagation();}
 function openJoin(){document.getElementById('guest').classList.add('active');}
 function closeJoin(){document.getElementById('guest').classList.remove('active');}
