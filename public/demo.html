@@ -215,7 +215,7 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
 
   <section id="guest" class="guest">
     <div class="guest-inner">
-      <div class="guest-top"><div class="guest-logo">have a s'Eat <small>食習</small></div><button class="guest-close" onclick="closeJoin()" aria-label="關閉">×</button></div>
+      <div class="guest-top"><div class="guest-logo">have a s’Eat <small>食習</small></div><button class="guest-close" onclick="closeJoin()" aria-label="關閉">×</button></div>
       <div class="guest-mark">HAVE A SEAT MEMBERSHIP</div>
       <h1>坐下來，<br>成為食習會員。</h1>
       <p class="guest-intro">使用 LINE 一鍵加入。南西、北車、花博，共用同一個會員身份。</p>
@@ -260,7 +260,7 @@ let current='home';
 function isMember(){return localStorage.getItem(memberKey)==='joined';}
 function hideAll(){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));}
 function syncTopBrand(){const brand=document.getElementById('top-brand');if(!brand)return;brand.className='brand';brand.innerHTML='have a s’Eat <small>食習</small>';}
-function go(id){if(id==='member'&&!isMember()){openJoin();return}current=id;hideAll();document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));syncTopBrand(id);if(id==='offers')showCouponTab('available');window.scrollTo(0,0);}
+function go(id){if(id==='member'&&!isMember()){openJoin();return}current=id;hideAll();document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));syncTopBrand(id);if(id==='offers'){showCouponTab('available');if(!isMember())openJoin();}window.scrollTo(0,0);}
 function story(id){hideAll();document.getElementById('story-'+id).classList.add('active');window.scrollTo(0,0);}
 function closeStory(){go('events');}
 const memberBenefitPhotos=['/event-images/shennong-member-01.svg','/event-images/shennong-member-02.svg','/event-images/shennong-member-03.svg','/event-images/shennong-member-04.svg','/event-images/shennong-member-05.svg'];
@@ -268,8 +268,8 @@ const iceMapPhotos=['/event-images/ice-map-01.jpg','/event-images/ice-map-02.jpg
 function openLightbox(group,index){const photos=group==='member'?memberBenefitPhotos:group==='ice'?iceMapPhotos:window.EDO_PHOTOS;const box=document.getElementById('image-lightbox');document.getElementById('lightbox-image').src=photos[index];box.classList.add('active');box.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
 function closeLightbox(event){if(event&&event.target.id==='lightbox-image')return;const box=document.getElementById('image-lightbox');box.classList.remove('active');box.setAttribute('aria-hidden','true');document.body.style.overflow='';if(event)event.stopPropagation();}
 function openJoin(){document.getElementById('guest').classList.add('active');}
-function closeJoin(){document.getElementById('guest').classList.remove('active');}
-function joinMember(){localStorage.setItem(memberKey,'joined');closeJoin();syncMemberState();go('home');}
+function closeJoin(){document.getElementById('guest').classList.remove('active');if(current==='offers'&&!isMember())go('home');}
+function joinMember(){const target=current==='offers'?'offers':'home';localStorage.setItem(memberKey,'joined');closeJoin();syncMemberState();go(target);}
 function resetDemo(){localStorage.removeItem(memberKey);localStorage.removeItem(lineFriendKey);syncMemberState();go('home');}
 function claimLineGift(){if(!isMember()){openJoin();return}localStorage.setItem(lineFriendKey,'joined');syncLineGift();alert('Demo：已加入食習官方 LINE，紅豆紫米粥兌換券已放入「優惠」。');}
 function syncLineGift(){const joined=localStorage.getItem(lineFriendKey)==='joined';const btn=document.getElementById('line-join-btn');const coupon=document.getElementById('line-gift-coupon');if(btn){btn.textContent=joined?'已加入，紅豆紫米粥券已領取':'加入官方 LINE，領取一份';btn.classList.toggle('claimed',joined)}if(coupon)coupon.classList.toggle('visible',joined);syncCouponCounts();}
