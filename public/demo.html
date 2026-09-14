@@ -68,7 +68,7 @@ h1{font-size:34px;margin:0 0 8px;font-weight:500} .sub{font-size:14px;color:var(
 </head>
 <body>
 <div id="app">
-  <header class="top"><div id="top-brand" class="brand">have a s'Eat <small>食習</small></div></header>
+  <header class="top"><div id="top-brand" class="brand">have a s’Eat <small>食習</small></div></header>
 
   <main id="home" class="page active">
     <section id="visitor-hero" class="visitor-hero has-photo" style="background-image:url('/photos/01-welcome-tea.jpg')">
@@ -258,7 +258,7 @@ const lineFriendKey='seat-demo-line-friend-v3';
 let current='home';
 function isMember(){return localStorage.getItem(memberKey)==='joined';}
 function hideAll(){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));}
-function syncTopBrand(id){const brand=document.getElementById('top-brand');if(!brand)return;brand.className=id==='offers'?'brand coupon-brand':'brand';brand.innerHTML=id==='offers'?'<span class="brand-mark">食</span><span class="brand-divider">｜</span><span>會員優惠</span>':"have a s'Eat <small>食習</small>";}
+function syncTopBrand(){const brand=document.getElementById('top-brand');if(!brand)return;brand.className='brand';brand.innerHTML='have a s’Eat <small>食習</small>';}
 function go(id){if(id==='member'&&!isMember()){openJoin();return}current=id;hideAll();document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));syncTopBrand(id);if(id==='offers')showCouponTab('available');window.scrollTo(0,0);}
 function story(id){hideAll();document.getElementById('story-'+id).classList.add('active');window.scrollTo(0,0);}
 function closeStory(){go('events');}
