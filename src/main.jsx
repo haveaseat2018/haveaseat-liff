@@ -2,5 +2,41 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
 
-function App(){return <main className="chooser"><div className="brand">have a s'Eat <small>食習</small></div><div className="intro"><span>LIFF UI REVIEW</span><h1>選擇要試用的版本</h1><p>兩個版本都可以完整點選操作。先比較使用邏輯，再決定最後合併方式。</p></div><div className="versions"><a href="/demo.html"><small>ORIGINAL UI</small><h2>舊版 UI</h2><p>原本 AppDeploy v80 的視覺與會員流程</p><b>進入舊版 →</b></a><a href="/first-ui/"><small>NEW UI CONCEPT</small><h2>新版 UI</h2><p>最開始製作的版本，含快速入口、分類菜單與門市詳情</p><b>進入新版 →</b></a></div><footer>食習會員 Demo · UI 比較入口</footer></main>}
+function App(){
+  const goMaji = (e) => {
+    e.preventDefault()
+    alert('神農生活入口 Demo 尚未串接正式頁面')
+  }
+
+  return (
+    <main className="entry-page">
+      <section className="entry-shell">
+        <header className="entry-head">
+          <p className="eyebrow">SELECT YOUR DESTINATION</p>
+          <h1>選擇您要前往的品牌</h1>
+          <p className="lead">探索神農生活，或進入食習會員服務。</p>
+        </header>
+
+        <div className="brand-options">
+          <a className="brand-card maji-card" href="#maji" onClick={goMaji}>
+            <div className="brand-mark maji-mark">神農生活</div>
+            <div className="brand-en">MAJI TREATS</div>
+            <p>台灣選物・風土文化・生活提案</p>
+            <span>進入神農生活 →</span>
+          </a>
+
+          <a className="brand-card seat-card" href="/demo.html">
+            <div className="brand-mark seat-mark">食習</div>
+            <div className="brand-en">have a sEAT</div>
+            <p>會員優惠・專屬好券・門市活動</p>
+            <span>進入食習會員 Demo →</span>
+          </a>
+        </div>
+
+        <footer>MAJI TREATS × have a sEAT</footer>
+      </section>
+    </main>
+  )
+}
+
 createRoot(document.getElementById('root')).render(<App/>)
