@@ -90,14 +90,12 @@ function BentoPage() {
       <section className="order-panel" id="order">
         <div className="order-heading reveal"><p className="section-kicker">ORDER INFORMATION</p><h2>今天預訂，<br />留給那天的重要一餐。</h2></div>
         <div className="order-grid reveal">
-          <article><strong>5</strong><span>份起訂</span></article>
           <article><strong>18:00</strong><span>最晚前天預訂</span></article>
-          <article><strong>5–9</strong><span>份・北車店自取</span></article>
-          <article><strong>10+</strong><span>份・5 公里內免費配送</span></article>
+          <article><strong>10+</strong><span>份・5 公里內幫你送</span></article>
         </div>
         <div className="pickup-note reveal"><MapPin aria-hidden="true" size={19} strokeWidth={1.8} /><div><strong>食習｜台北車站 Atre 店</strong><span>台北市中正區忠孝西路一段 49 號 B1</span></div></div>
         <div className="order-actions reveal"><OrderButton type="line">LINE 詢問訂購</OrderButton><OrderButton type="phone">電話洽詢</OrderButton></div>
-        <p className="order-fineprint reveal">實際供應、取餐及配送時間，以門市確認為準。</p>
+        <p className="order-fineprint reveal">未滿 10 份可於北車店自取；實際供應、取餐及配送時間，以門市確認為準。</p>
       </section>
 
       <footer className="bento-footer"><BrandMark /><span>食習 Bento · 台北車站限定</span></footer>
