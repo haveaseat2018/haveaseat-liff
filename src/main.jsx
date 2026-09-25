@@ -28,18 +28,10 @@ function OrderButton({ type, children }) {
   )
 }
 
-function Product({ tone, image, eyebrow, title, description }) {
+function ProductPoster({ tone, image, title }) {
   return (
-    <section className={`product-panel ${tone}`}>
-      <div className="product-copy reveal">
-        <p className="section-kicker">{eyebrow}</p>
-        <h2>{title}</h2>
-        <p>{description}</p>
-        <div className="product-meta"><strong>NT$220</strong><span>附季節湯品</span></div>
-      </div>
-      <figure className="product-image-wrap reveal">
-        <img src={image} alt={`${title}，售價 NT$220，附季節湯品`} />
-      </figure>
+    <section className={`product-poster ${tone}`} aria-label={`${title}，售價 NT$220，附季節湯品`}>
+      <img className="reveal" src={image} alt={`${title}，售價 NT$220，附季節湯品`} loading="lazy" />
     </section>
   )
 }
@@ -72,8 +64,8 @@ function BentoPage() {
         <p className="reveal">北車限定外帶，為忙碌的一天留一頓好飯。</p>
       </section>
 
-      <Product tone="charcoal" image="/bento/sausage-eel.jpg" eyebrow="01 · SAVORY" title="臘味江戶風鰻魚飯" description="香嫩鰻魚與台灣臘味相遇，鹹甜交織，層次飽滿。" />
-      <Product tone="indigo" image="/bento/bamboo-eel.jpg" eyebrow="02 · SEASONAL" title="筍香江戶風鰻魚飯" description="清甜鮮筍襯托炙燒鰻魚，爽脆、醬香，豐腴而不膩。" />
+      <ProductPoster tone="charcoal" image="/bento/sausage-poster.jpg" title="臘味江戶風鰻魚飯" />
+      <ProductPoster tone="indigo" image="/bento/bamboo-poster.jpg" title="筍香江戶風鰻魚飯" />
 
       <section className="craft-panel craft-fire">
         <img src="/bento/fire.jpg" alt="炭火上炙燒的鰻魚" />
